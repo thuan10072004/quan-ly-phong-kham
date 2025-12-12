@@ -1,146 +1,112 @@
 
-# Bài tập lớn - Phát triển ứng dụng với Flutter
+# Báo cáo Bài tập lớn: Ứng dụng Quản lý Phòng Khám
 
-## Thông tin sinh viên
-- **Họ và tên**: _________
-- **MSSV**: _________
-- **Lớp**: _________
+## 1. Thông tin sinh viên
+- **Họ và tên**: Bùi Ngọc Thuấn
+- **MSSV**: 2221050358
+- **Lớp**: DCCTCLC67B
 
-## Giới thiệu
-Đây là yêu cầu của bài tập lớn cho một trong hai học phần **Phát triển ứng dụng di động đa nền tảng 1 (mã học phần 7080325) và Phát triển ứng dụng cho thiết bị di động + BTL (mã học phần 7080115)**. Sinh viên sẽ xây dựng một ứng dụng di động hoàn chỉnh sử dụng Flutter và Dart, áp dụng các kiến thức đã học về lập trình giao diện người dùng, quản lý trạng thái, tích hợp API hoặc/và CSDL, kiểm thử tự động và CI/CD với GitHub Actions.
+## 2. Giới thiệu dự án
+Ứng dụng **Clinic Management** là giải pháp di động giúp quản lý danh mục thuốc và vật tư y tế. Ứng dụng cho phép người dùng (nhân viên y tế/quản lý) thực hiện các thao tác thêm, xem, sửa, xóa (CRUD) thông tin thuốc, đồng thời hỗ trợ tìm kiếm và sắp xếp dữ liệu theo thời gian thực.
 
-## Mục tiêu
-Bài tập lớn nhằm:
-- Phát triển kỹ năng lập trình giao diện người dùng (UI) với Flutter và ngôn ngữ Dart.
-- Hiểu và áp dụng các cách quản lý trạng thái trong ứng dụng Flutter.
-- Biết tích hợp ứng dụng với backend hoặc dịch vụ backend thông qua API hoặc CSDL.
-- Thực hiện được các thao tác CRUD (Create, Read, Update, Delete) cơ bản với dữ liệu.
-- Biết áp dụng kiểm thử tự động để đảm bảo chất lượng ứng dụng.
-- Biết áp dụng CI/CD với GitHub Actions để tự động hóa quy trình kiểm thử và triển khai.
+Dự án được xây dựng theo kiến trúc **MVVM** (Model - View - ViewModel), kết nối với Backend **PHP & MySQL** và đảm bảo quy trình **CI/CD** tự động thông qua GitHub Actions.
 
-## Yêu cầu ứng dụng
-### 1. Chức năng CRUD
-- Ứng dụng cần cung cấp đầy đủ các chức năng CRUD (Create, Read, Update, Delete) cho một đối tượng bất kỳ (ví dụ: sản phẩm, người dùng, ghi chú, sự kiện, v.v.).
-- Mỗi đối tượng cần có ít nhất các thuộc tính cơ bản như:
-  - **id**: Định danh duy nhất cho mỗi đối tượng.
-  - **title**: Mô tả ngắn gọn hoặc tên của đối tượng.
-  - **Trạng thái hoặc thuộc tính bổ sung**: Ví dụ, trạng thái hoàn thành cho công việc, hoặc số lượng cho sản phẩm.
-- Sử dụng `dart data class generator extension` hoặc các công cụ tương tự để tạo ra các class model. Hiểu rõ về data model được sử dụng trong ứng dụng bao gồm các thuộc tính, phương thức và cách sử dụng.
+## 3. Công nghệ và Thư viện sử dụng
+- **Ngôn ngữ & Framework**: Flutter (Dart).
+- **Backend**: PHP (API thuần), MySQL (Cơ sở dữ liệu XAMPP).
+- **Quản lý trạng thái (State Management)**: `provider`.
+- **Kết nối mạng**: `http` (Gọi RESTful API).
+- **Cấu trúc dữ liệu**: JSON.
+- **Kiểm thử**: `flutter_test`, `mockito`.
+- **CI/CD**: GitHub Actions.
+- **Giao diện**: Material Design 3, `google_fonts`.
 
-### 2. Giao diện người dùng
-- Thiết kế giao diện đơn giản, dễ sử dụng, thân thiện với người dùng.
-- Yêu cầu các màn hình cơ bản:
-  - Danh sách các đối tượng.
-  - Chi tiết đối tượng (có thể tạo, sửa, xóa).
-  - Cập nhật thông tin cá nhân và thay đổi mật khẩu (nếu ứng dụng có chức năng xác thực).
+## 4. Các chức năng chính (Đạt tiêu chí 10/10)
+### a. Chức năng CRUD (Hoàn thiện)
+- **Create (Thêm)**: Thêm mới thuốc với validation kỹ càng (bắt buộc nhập tên, giá phải là số dương).
+- **Read (Xem)**: Hiển thị danh sách thuốc từ Server MySQL, có hiệu ứng loading.
+- **Update (Sửa)**: Cập nhật thông tin thuốc, tự động làm mới danh sách sau khi sửa.
+- **Delete (Xóa)**: Xóa thuốc khỏi cơ sở dữ liệu.
 
-### 3. Tích hợp API
-Ứng dụng cần tích hợp với backend qua các API phù hợp với loại lưu trữ dữ liệu đã chọn (ví dụ: Firebase, RESTful API, GraphQL, MySQL v.v.). Cụ thể:
-**- Nếu sử dụng Firebase hoặc các dịch vụ tương tự**
-  -	Thiết lập Firebase Authentication nếu ứng dụng yêu cầu đăng nhập và xác thực người dùng.
-  -	Sử dụng Firebase Firestore hoặc Realtime Database để lưu trữ dữ liệu và thực hiện các thao tác CRUD.
-  - Đảm bảo tích hợp Firebase Storage nếu ứng dụng yêu cầu lưu trữ các tệp phương tiện (ảnh, video).
-  - Xử lý các lỗi API từ Firebase (ví dụ: lỗi xác thực, quyền truy cập) và hiển thị thông báo thân thiện.
+### b. Chức năng Nâng cao
+- **Tìm kiếm (Search)**: Tìm kiếm thuốc theo tên ngay lập tức (Real-time filtering) tại phía Client.
+- **Sắp xếp (Sort)**: Sắp xếp danh sách thuốc theo Giá tiền (Tăng dần / Giảm dần).
+- **Tự động nhận diện môi trường**: Code tự động chuyển đổi IP API (`localhost` khi chạy Web, `10.0.2.2` khi chạy Android Emulator).
 
-**- Nếu sử dụng cơ sở dữ liệu quan hệ như MySQL hoặc tương tự**
-  - Kết nối với backend sử dụng các API RESTful hoặc GraphQL để giao tiếp với cơ sở dữ liệu.
-  - Thực hiện các thao tác CRUD với dữ liệu thông qua các endpoint API.
-  - Cấu hình xác thực và phân quyền nếu backend hỗ trợ.
-  - Xử lý các lỗi truy vấn (ví dụ: lỗi kết nối, lỗi SQL) và hiển thị thông báo lỗi phù hợp cho người dùng.
+### c. Kiểm thử & CI/CD
+- **Unit Test**: Kiểm thử Logic Model, chuyển đổi dữ liệu JSON/Double.
+- **Widget Test**: Kiểm thử hiển thị giao diện người dùng (nút bấm, tiêu đề).
+- **GitHub Actions**: Tự động chạy test và build mỗi khi có code mới được đẩy lên (Push).
 
-**- Nếu sử dụng lưu trữ cục bộ dựa trên file JSON dạng NoSQL như localstore**
-  - Sử dụng localstore hoặc thư viện tương tự để lưu trữ dữ liệu cục bộ dưới dạng file JSON trên thiết bị.
-  - Đảm bảo ứng dụng có thể thực hiện các thao tác CRUD và đồng bộ dữ liệu khi ứng dụng online.
-  - Kiểm tra và xử lý các lỗi lưu trữ (ví dụ: lỗi khi ghi/đọc file) và hiển thị thông báo phù hợp cho người dùng.
+## 5. Hướng dẫn cài đặt và Chạy ứng dụng
+Do ứng dụng sử dụng Backend riêng, Giảng viên vui lòng thực hiện các bước sau để chấm bài:
 
-### 4. Kiểm thử tự động và CI/CD
-- Tạo các bài kiểm thử tự động bao gồm kiểm thử đơn vị (unit test) và kiểm thử giao diện (widget test) để kiểm tra các chức năng cơ bản của ứng dụng.
-- Sử dụng GitHub Actions để tự động chạy các kiểm thử khi có thay đổi mã nguồn.
+### Bước 1: Cấu hình Backend (XAMPP)
+1. Bật **Apache** và **MySQL** trong XAMPP.
+2. Vào `phpMyAdmin`, tạo database tên: `flutter_clinic_final`.
+3. Chạy lệnh SQL sau để tạo bảng và dữ liệu mẫu:
+   ```sql
+   CREATE TABLE products (
+       id INT AUTO_INCREMENT PRIMARY KEY,
+       name VARCHAR(255) NOT NULL,
+       price DOUBLE NOT NULL,
+       category VARCHAR(100) NOT NULL
+   );
+   INSERT INTO products (name, price, category) VALUES ('Panadol', 15000, 'Giảm đau');
+````
 
-## Công nghệ và Thư viện sử dụng
-Sinh viên cần liệt kê một số công nghệ và thư viện cần sử dụng trong quá trình phát triển ứng dụng, ví dụ:
-- **Flutter**: Để xây dựng giao diện người dùng.
-- **Dio hoặc http**: Để gọi API và xử lý HTTP request.
-- **localstore**: Để lưu trữ dữ liệu cục bộ, giúp ứng dụng có thể hoạt động offline.
-- **Test Framework (flutter_test)**: Sử dụng để viết các bài kiểm thử tự động.
-- **GitHub Actions**: Để tự động hóa quy trình kiểm thử khi có thay đổi mã nguồn.
+4.  Copy thư mục `api` (có trong source code) vào thư mục `htdocs` của XAMPP (`C:\xampp\htdocs\api`).
 
-## Báo cáo kết quả
-Sinh viên cần tạo tài liệu báo cáo kết quả, hướng dẫn cài đặt ứng dụng trên thiết bị di động hoặc máy ảo để giám khảo có thể kiểm tra ứng dụng một cách dễ dàng. Ví dụ:
-1. Tải mã nguồn từ repository.
+### Bước 2: Chạy ứng dụng Flutter
+
+1.  Tải mã nguồn:
     ```bash
-    git clone <đường dẫn tới repo>
+    git clone <link-repo-cua-ban>
+    ```
+2.  Cài đặt thư viện:
+    ```bash
+    flutter pub get
+    ```
+3.  Chạy ứng dụng (Hỗ trợ cả Web và Android):
+    ```bash
+    flutter run
     ```
 
-2. Cài đặt các dependencies:
-   ```bash
-   flutter pub get
-   ```
-3. Chạy ứng dụng:
-   ```bash
-   flutter run
-   ```
-4. Kiểm tra ứng dụng trên thiết bị hoặc máy ảo.
-5. Đăng nhập hoặc tạo tài khoản mới (nếu cần).
-6. Thực hiện các thao tác CRUD và kiểm tra kết quả.
-7. Thực hiện kiểm thử tự động và xem kết quả:
-    ```bash
-    flutter test
-    ```
-8. Screenshots hoặc video demo về ứng dụng và quá trình kiểm thử tự động.
+### Bước 3: Chạy Kiểm thử tự động
 
-## Yêu cầu nộp bài
-- **Source code**: Đẩy toàn bộ mã nguồn lên GitHub repository cá nhân và chia sẻ quyền truy cập.
-- **Kiểm thử tự động**: Sinh viên cần viết các bài kiểm thử tự động cho ứng dụng. Các bài kiểm thử cần được tổ chức rõ ràng và dễ hiểu trong thư mục `test` với hậu tố `_test.dart`. Các bài kiểm thử đơn vị (unit test) cần kiểm tra các chức năng cơ bản của ứng dụng và đảm bảo chất lượng mã nguồn. Kiểm thử UI (widget test) cần được viết để kiểm tra giao diện người dùng và các tương tác người dùng cơ bản.
-- **Các video demo**: 
-  - Quá trình kiểm thử tự động bao gồm kiểm thử đơn vị và kiểm thử UI (bắt buộc).
-  - Trình bày các chức năng chính của ứng dụng (bắt buộc).
-  Các video cần biên tập sao cho rõ ràng, dễ hiểu và không quá dài (tối đa 5 phút).
-- **Báo cáo kết quả**: Đây là nội dung báo cáo của bài tập lớn. Sinh viên cần viết báo cáo ngắn mô tả quá trình phát triển, các thư viện đã sử dụng và các kiểm thử đã thực hiện. Có thể viết trực tiếp trên file README.md này ở mục `Báo cáo kết quả`.
-- **GitHub Actions**: Thiết lập GitHub Actions để chạy kiểm thử tự động khi có thay đổi mã nguồn. Tệp cấu hình workflow cần được đặt trong thư mục `.github/workflows`, đặt tên tệp theo định dạng `ci.yml` (có trong mẫu của bài tập lớn). Github Actions cần chạy thành công và không có lỗi nếu mã nguồn không có vấn đề. Trong trường hợp có lỗi, sinh viên cần sửa lỗi và cập nhật mã nguồn để build thành công. Nếu lỗi liên quan đến `Billing & plans`, sinh viên cần thông báo cho giảng viên để được hỗ trợ hoặc bỏ qua yêu cầu này.
+Để kiểm tra Unit Test và Widget Test:
 
-## Tiêu chí đánh giá
-**5/10 điểm - Build thành công (GitHub Actions báo “Success”)**
-- Sinh viên đạt tối thiểu 5 điểm nếu GitHub Actions hoàn thành build và kiểm thử mà không có lỗi nào xảy ra (kết quả báo “Success”).
-- Điểm này dành cho những sinh viên đã hoàn thành cấu hình cơ bản và mã nguồn có thể chạy nhưng có thể còn thiếu các tính năng hoặc có các chức năng chưa hoàn thiện.
-- Nếu gặp lỗi liên quan đến `Billing & plans` thì phải đảm bảo chay thành công trên máy cá nhân và cung cấp video demo cùng với lệnh `flutter test` chạy thành công.
+```bash
+flutter test
+```
 
-**6/10 điểm - Thành công với kiểm thử cơ bản (CRUD tối thiểu)**
-- Sinh viên đạt 6 điểm nếu build thành công và vượt qua kiểm thử cho các chức năng CRUD cơ bản (tạo, đọc, cập nhật, xóa) cho đối tượng chính.
-- Tối thiểu cần thực hiện CRUD với một đối tượng cụ thể (ví dụ: sản phẩm hoặc người dùng), đảm bảo thao tác cơ bản trên dữ liệu.
+## 6\. Video Demo
 
-**7/10 điểm - Kiểm thử CRUD và trạng thái (UI cơ bản, quản lý trạng thái)**
-- Sinh viên đạt 7 điểm nếu ứng dụng vượt qua các kiểm thử CRUD và các kiểm thử về quản lý trạng thái.
-- Giao diện hiển thị danh sách và chi tiết đối tượng cơ bản, có thể thực hiện các thao tác CRUD mà không cần tải lại ứng dụng.
-- Phản hồi người dùng thân thiện (hiển thị kết quả thao tác như thông báo thành công/thất bại).
+*Link video demo các chức năng và quá trình kiểm thử sẽ được cập nhật tại đây:*
 
-**8/10 điểm - Kiểm thử CRUD, trạng thái và tích hợp API hoặc/và CSDL**
-- Sinh viên đạt 8 điểm nếu ứng dụng vượt qua kiểm thử cho CRUD, trạng thái, và tích hợp API hoặc/và cơ sở dữ liệu (Firebase, MySQL hoặc lưu trữ cục bộ) hoặc tương đương.
-- API hoặc cơ sở dữ liệu phải được tích hợp hoàn chỉnh, các thao tác CRUD liên kết trực tiếp với backend hoặc dịch vụ backend.
-- Các lỗi từ API hoặc cơ sở dữ liệu được xử lý tốt và có thông báo lỗi cụ thể cho người dùng.
+  - **Video 1 (Demo chức năng & API):** [Đang cập nhật...]
+  - **Video 2 (Demo Kiểm thử tự động & CI/CD):** [Đang cập nhật...]
 
-**9/10 điểm - Kiểm thử tự động toàn diện và giao diện hoàn thiện**
-- Sinh viên đạt 9 điểm nếu vượt qua các kiểm thử toàn diện bao gồm:
-- CRUD đầy đủ
-- Quản lý trạng thái
-- Tích hợp API/CSDL
-- Giao diện người dùng hoàn chỉnh và thân thiện, dễ thao tác, không có lỗi giao diện chính.
-- Đảm bảo chức năng xác thực (nếu có), cập nhật thông tin cá nhân, thay đổi mật khẩu (nếu có).
+## 7\. Kết quả CI/CD (GitHub Actions)
 
-**10/10 điểm - Kiểm thử và tối ưu hóa hoàn chỉnh, UI/UX mượt mà, CI/CD ổn định**
-- Sinh viên đạt 10 điểm nếu ứng dụng hoàn thành tất cả kiểm thử tự động một cách hoàn hảo và tối ưu hóa tốt (không có cảnh báo trong kiểm thử và phân tích mã nguồn).
-- UI/UX đẹp và mượt mà, có tính nhiều tính năng và tính năng nâng cao (ví dụ: tìm kiếm, sắp xếp, lọc dữ liệu).
-- GitHub Actions CI/CD hoàn thiện, bao gồm kiểm thử và các bước phân tích mã nguồn (nếu thêm), đảm bảo mã luôn ổn định.
+  - Trạng thái Workflow: **Success** ✅
+  - File cấu hình: `.github/workflows/ci.yml`
+  - Đã vượt qua tất cả các bài test trên môi trường ảo Ubuntu.
 
-**Tóm tắt các mức điểm:**
-- **5/10**: Build thành công, kiểm thử cơ bản chạy được.
-- **6/10**: CRUD cơ bản với một đối tượng.
-- **7/10**: CRUD và quản lý trạng thái (hiển thị giao diện cơ bản).
-- **8/10**: CRUD, trạng thái, và tích hợp API/CSDL với thông báo lỗi.
-- **9/10**: Hoàn thiện kiểm thử CRUD, trạng thái, tích hợp API/CSDL; UI thân thiện.
-- **10/10**: Tối ưu hóa hoàn chỉnh, UI/UX mượt mà, CI/CD đầy đủ và ổn định.
+## 8\. Tự đánh giá điểm: 10/10
 
-## Tự đánh giá điểm: X/10
-Sinh viên cần tự đánh giá mức độ hoàn thiện của ứng dụng và so sánh với tiêu chí đánh giá để xác định điểm cuối cùng. Điểm tự đánh giá sẽ được sử dụng như một tiêu chí tham khảo cho giảng viên đánh giá cuối cùng.
+Dựa trên tiêu chí đánh giá, nhóm tự đánh giá đạt điểm tối đa vì:
 
-Chúc các bạn hoàn thành tốt bài tập lớn và khám phá thêm nhiều kiến thức bổ ích qua dự án này!
+  - [x] Build thành công, không lỗi.
+  - [x] CRUD hoàn chỉnh với Database MySQL.
+  - [x] Có tính năng tìm kiếm, sắp xếp (UI/UX mượt mà).
+  - [x] Xử lý lỗi API và Validation form tốt.
+  - [x] Viết đầy đủ Unit Test và Widget Test.
+  - [x] GitHub Actions hoạt động ổn định (Success).
+
+-----
+
+*Cảm ơn Giảng viên đã xem xét bài tập lớn của em\!*
+
+```
+```
