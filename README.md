@@ -84,8 +84,8 @@ flutter test
 
 *Link video demo các chức năng và quá trình kiểm thử sẽ được cập nhật tại đây:*
 
-  - **Video 1 (Demo chức năng & API):** [Đang cập nhật...]
-  - **Video 2 (Demo Kiểm thử tự động & CI/CD):** [Đang cập nhật...]
+  - **Video 1 https://youtu.be/0n9fiQJ4Wzw
+  - **Video 2 https://youtu.be/vDI4DmyL5pQ
 
 ## 7\. Kết quả CI/CD (GitHub Actions)
 
