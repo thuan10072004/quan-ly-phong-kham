@@ -21,8 +21,8 @@ Dự án được xây dựng theo kiến trúc **MVVM** (Model - View - ViewMod
 - **CI/CD**: GitHub Actions.
 - **Giao diện**: Material Design 3, `google_fonts`.
 
-## 4. Các chức năng chính (Đạt tiêu chí 10/10)
-### a. Chức năng CRUD (Hoàn thiện)
+## 4. Các chức năng chính 
+### a. Chức năng CRUD 
 - **Create (Thêm)**: Thêm mới thuốc với validation kỹ càng (bắt buộc nhập tên, giá phải là số dương).
 - **Read (Xem)**: Hiển thị danh sách thuốc từ Server MySQL, có hiệu ứng loading.
 - **Update (Sửa)**: Cập nhật thông tin thuốc, tự động làm mới danh sách sau khi sửa.
@@ -89,11 +89,11 @@ flutter test
 
 ## 7\. Kết quả CI/CD (GitHub Actions)
 
-  - Trạng thái Workflow: **Success** ✅
+  - Trạng thái Workflow: **Success** 
   - File cấu hình: `.github/workflows/ci.yml`
   - Đã vượt qua tất cả các bài test trên môi trường ảo Ubuntu.
 
-## 8\. Tự đánh giá điểm: 10/10
+## 8\. Tự đánh giá điểm: 9/10
 
 Dựa trên tiêu chí đánh giá, nhóm tự đánh giá đạt điểm tối đa vì:
 

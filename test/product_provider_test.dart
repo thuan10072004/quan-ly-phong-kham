@@ -1,5 +1,4 @@
 import 'package:flutter_test/flutter_test.dart';
-// [SỬA LỖI Ở ĐÂY]: Đổi tên package cho đúng với dự án của bạn
 import 'package:flutter_project/models/product.dart';
 
 void main() {
