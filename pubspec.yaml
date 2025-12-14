@@ -16,6 +16,7 @@ dependencies:
   intl: ^0.18.0          # Định dạng tiền tệ/ngày tháng
   uuid: ^4.0.0           # Tạo ID
   google_fonts: ^6.1.0   # Font chữ đẹp
+  http: ^1.6.0
 
 dev_dependencies:
   flutter_test:
