@@ -39,7 +39,7 @@ Dự án được xây dựng theo kiến trúc **MVVM** (Model - View - ViewMod
 - **GitHub Actions**: Tự động chạy test và build mỗi khi có code mới được đẩy lên (Push).
 
 ## 5. Hướng dẫn cài đặt và Chạy ứng dụng
-Do ứng dụng sử dụng Backend riêng, Giảng viên vui lòng thực hiện các bước sau để chấm bài:
+
 
 ### Bước 1: Cấu hình Backend (XAMPP)
 1. Bật **Apache** và **MySQL** trong XAMPP.

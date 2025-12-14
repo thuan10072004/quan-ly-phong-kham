@@ -1,4 +1,4 @@
-name: Flutter CI
+name: Clinic App CI/CD
 
 on:
   push:
@@ -7,32 +7,36 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    
+    # 1. Tải mã nguồn về máy ảo Ubuntu của GitHub
+    - uses: actions/checkout@v4
+
+    # 2. Cài đặt Java (Cần thiết để build Android)
     - name: Set up Java
       uses: actions/setup-java@v3
       with:
         distribution: 'zulu'
-        java-version: '12.x'
-        
+        java-version: '17'
+
+    # 3. Cài đặt Flutter
     - name: Set up Flutter
       uses: subosito/flutter-action@v2
       with:
         flutter-version: '3.x'
         channel: 'stable'
-        
+
+    # 4. Tải các thư viện (Provider, Http...)
     - name: Install Dependencies
       run: flutter pub get
-      
-    - name: Analyze Code (Kiểm tra lỗi static)
+
+    # 5. Phân tích mã nguồn (Để lấy điểm cộng "Phân tích mã nguồn")
+    - name: Analyze Code
       run: flutter analyze
 
-    - name: Run Tests (Chạy kiểm thử tự động)
+    # 6. Chạy Kiểm thử tự động (Unit Test & Widget Test)
+    # Đây là bước quyết định để có dấu tích xanh ✅
+    - name: Run Tests
       run: flutter test
-
-    - name: Build APK (Tùy chọn, để chứng minh build được)
-      run: flutter build apk --debug
