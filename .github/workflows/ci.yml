@@ -27,9 +27,7 @@ jobs:
 
     - name: Install Dependencies
       run: flutter pub get
-
-    # --- SỬA ĐOẠN NÀY ---
-    # Thêm cờ --no-fatal-infos để bỏ qua lỗi vặt như 'print' hay thiếu ngoặc {}
+      
     - name: Analyze Code
       run: flutter analyze --no-fatal-infos --no-fatal-warnings
 
